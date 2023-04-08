@@ -20,19 +20,21 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+         width: double.infinity, 
+         height: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomCenter,
                 colors: <Color>[
-              Color(0xff1f005c),
-              Color(0xff5b0060),
-              Color(0xff870160),
-              Color(0xffac255e),
-              Color(0xffca485c),
-              Color(0xffe16b5c),
-              Color(0xfff39060),
-              Color(0xffffb56b),
+              Color.fromARGB(255, 14, 0, 43),
+              Color.fromARGB(255, 40, 0, 42),
+              Color.fromARGB(255, 65, 0, 47),
+              Color.fromARGB(255, 111, 24, 60),
+              Color.fromARGB(255, 131, 20, 37),
+              Color.fromARGB(255, 122, 23, 10),
+              Color.fromARGB(255, 122, 48, 11),
+              Color.fromARGB(255, 215, 115, 15),
             ])),
         child: SingleChildScrollView(
           child: Padding(
@@ -55,32 +57,36 @@ class _SignInScreenState extends State<SignInScreen> {
                   height: 20,
                 ),
                 signInSignUpButton(context, true, () {}),
-                signUpOption()
-              ],
+                // signUpOption()
+               
+      const Text("Don't have an account ?",
+          style: TextStyle(color: Colors.white70)),
+      TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 15,
+              color: Colors.white70),
+            ),
+            onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignUpScreen()),
+                  );
+                },
+            child: const Text('Sign Up',
+            style: TextStyle(color: Colors.white70),),
+          ),
+    ],
+                
+              
             ),
           ),
         ),
       ),
+
     );
   }
 }
 
-Row signUpOption() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      const Text("Don't have an account ?",
-          style: TextStyle(color: Colors.white70)),
-      GestureDetector(
-        onTap: () {
-          Navigator.push(context as BuildContext,
-              MaterialPageRoute(builder: (_) => SignUpScreen()));
-        },
-        child: const Text(
-          " Sign Up",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      )
-    ],
-  );
-}
+// Row signUpOption() {
+//   return 
+// }

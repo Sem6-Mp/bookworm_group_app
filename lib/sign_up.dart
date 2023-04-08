@@ -31,14 +31,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: <Color>[
-          Color(0xff1f005c),
-          Color(0xff5b0060),
-          Color(0xff870160),
-          Color(0xffac255e),
-          Color(0xffca485c),
-          Color(0xffe16b5c),
-          Color(0xfff39060),
-          Color(0xffffb56b),
+              Color.fromARGB(255, 14, 0, 43),
+              Color.fromARGB(255, 40, 0, 42),
+              Color.fromARGB(255, 65, 0, 47),
+              Color.fromARGB(255, 111, 24, 60),
+              Color.fromARGB(255, 131, 20, 37),
+              Color.fromARGB(255, 122, 23, 10),
+              Color.fromARGB(255, 122, 48, 11),
+              Color.fromARGB(255, 215, 115, 15),
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(
@@ -46,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(children: <Widget>[
               const SizedBox(
-                height: 20,
+                height: 50,
               ),
               reusableTextField("Enter Username", Icons.person_outline, false,
                   _userNameTextController),
@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               reusableTextField("Enter Password", Icons.password_outlined,
                   false, _passwordTextController),
               SizedBox(
-                height: 20,
+                height: 40,
               ),
               signInSignUpButton(context, true, () {
                 Navigator.push(context as BuildContext,
