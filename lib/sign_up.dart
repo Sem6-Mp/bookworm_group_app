@@ -1,5 +1,7 @@
 import 'package:app/home_screen.dart';
 import 'package:app/reusable_widget/reusable_widget.dart';
+import 'package:app/sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:app/reusable_widget/reusable_widget.dart';
 
@@ -31,14 +33,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: <Color>[
-              Color.fromARGB(255, 14, 0, 43),
-              Color.fromARGB(255, 40, 0, 42),
-              Color.fromARGB(255, 65, 0, 47),
-              Color.fromARGB(255, 111, 24, 60),
-              Color.fromARGB(255, 131, 20, 37),
-              Color.fromARGB(255, 122, 23, 10),
-              Color.fromARGB(255, 122, 48, 11),
-              Color.fromARGB(255, 215, 115, 15),
+          Color.fromARGB(255, 14, 0, 43),
+          Color.fromARGB(255, 40, 0, 42),
+          Color.fromARGB(255, 65, 0, 47),
+          Color.fromARGB(255, 111, 24, 60),
+          Color.fromARGB(255, 131, 20, 37),
+          Color.fromARGB(255, 122, 23, 10),
+          Color.fromARGB(255, 122, 48, 11),
+          Color.fromARGB(255, 215, 115, 15),
         ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         child: SingleChildScrollView(
           child: Padding(
@@ -64,8 +66,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 40,
               ),
               signInSignUpButton(context, true, () {
-                Navigator.push(context as BuildContext,
-                    MaterialPageRoute(builder: (context) => HomeScreen()));
+                FirebaseAuth.instance
+                    .createUserWithEmailAndPassword(
+                        email: _emailTextController.text,
+                        password: _passwordTextController.text)
+                    .then((value) {
+                  print("Created Account Successfully");
+                  Navigator.push(context as BuildContext,
+                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                }).onError((error, stackTrace) {
+                  print("Error ${error.toString()}");
+                });
               })
             ]),
           ),
